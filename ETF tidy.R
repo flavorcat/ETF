@@ -15,3 +15,11 @@ long.data <- function(data){
     long.data$date <- as.POSIXct(long.data$date, format = '%e/%m/%Y')
     return(long.data)
 }
+
+wider <- function(data){
+    # accepts data in long form provided by long.data()
+    # removes NA's and recasts into useful wide format.
+    data <- data[complete.cases(data),]
+    wide <- dcast(data, date ~ variable)
+    return(wide)
+}
